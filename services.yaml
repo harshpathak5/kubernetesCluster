@@ -12,3 +12,19 @@ spec:
     nodePort: 30081
  
  type: NodePort
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: application-queue 
+spec:
+ selector:
+  appLabel: queue
+ ports:
+  - name: http
+    port: 8161
+    nodePort: 30011
+
+ type: NodePort
