@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: webapp
+ name: fleetman-webapp
 spec:
  selector:
   app: webapp
@@ -11,14 +11,12 @@ spec:
     port: 80
     nodePort: 30080
 
- type: nodePort
-
-
-
+ type: NodePort
+---
 apiVersion: v1
 kind: Service
 metadata:
- name: application-queue 
+ name: fleetman-queue 
 spec:
  selector:
   app: queue
@@ -32,3 +30,33 @@ spec:
     
 
  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: fleetman-position-tracker
+spec:
+ selector:
+  app: position-tracker
+ ports:
+  - name: http
+    port: 8080
+    
+ type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: fleetman-api-gateway
+spec:
+ selector:
+  app: api-gateway
+ ports:
+  - name: http
+    port: 8080
+
+ type: ClusterIP
+
