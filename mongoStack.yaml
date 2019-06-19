@@ -19,10 +19,14 @@ spec:
        - name: mongo-persistent-storage
          mountPath: /data/db
    volumes:
-     - name: mongo-persistent-storage
-       hostPath:
-         path: /mnt/mongodbPath/
-         type: DirectoryOrCreate
+    - name: mongo-persistent-storage
+      persistentVolumeClaim:
+       claimName: mongo-pvc
+    #  - name: mongo-persistent-storage
+    #    hostPath:
+    #      path: /mnt/mongodbPath/
+    #      type: DirectoryOrCreate
+    
 ---
 
 apiVersion: v1
